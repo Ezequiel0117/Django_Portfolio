@@ -1,0 +1,107 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% load static %}
+
+<header class="row bg-black">
+  <div class="col-md-4">
+    <img
+      src="{% static 'portfolio/HuTao.jpg'%}"
+      alt=""
+      class="img-fluid"
+    />
+  </div>
+  <div class="col-md-8 my-auto">
+    <h1>I am <strong>Ezequiel J</strong></h1>
+    <h3>Software Engineer | Problem Solver | Technology Enthusiast</h3>
+    <p>
+      As a passionate software engineer, I specialize in designing and developing
+      scalable, efficient, and user-focused applications. With experience in
+      full-stack development, I have a strong foundation in both frontend and
+      backend technologies, enabling me to build robust systems from the ground up.
+    </p>
+    <p>
+      My expertise includes:
+      <ul>
+        <li>
+          Developing and maintaining web applications using modern frameworks and
+          languages such as Python, JavaScript, and Django.
+        </li>
+        <li>
+          Building intuitive and responsive user interfaces using HTML, CSS, and
+          JavaScript libraries like React and Bootstrap.
+        </li>
+        <li>
+          Creating and optimizing backend services, APIs, and databases for
+          performance and scalability.
+        </li>
+        <li>
+          Implementing best practices in software development, including version
+          control, testing, and agile methodologies.
+        </li>
+      </ul>
+    </p>
+    <a
+      href="{% static 'portfolio/Tarea Sistemas 2.pdf' %}"
+      class="btn btn-primary btn-lg rounded-0 my-3"
+      >Download CV</a
+    >
+  </div>
+</header>
+
+<div class="row my-4 text-center">
+  <h3>My Projects</h3>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, temporibus?
+  </p>
+
+  {% for project in projects %}
+  <div class="col-md-4 p-4">
+    <div class="card bg-black card-project">
+      <img
+        src="{{project.image.url}}"
+        alt="{{project.title}}"
+        class="car-img-top"
+      />
+      <div class="card-body" style="color: white;">
+        <h2>{{project.title}}</h2>
+        <p>{{project.description}}</p>
+
+        {% if project.url %}
+        <a
+          href="{{project.url}}"
+          class="btn btn-light rounded-0 btn-sm"
+          target="_blank"
+          >{{project.url}}</a
+        >
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Course Experience Section -->
+<div class="row my-4 text-center">
+  <h3>My Course Experiences</h3>
+  <p>
+    A showcase of the courses and training I have completed.
+  </p>
+
+  {% for experience in experiences %}
+  <div class="col-md-4 p-4">
+    <div class="card bg-dark card-experience">
+      <div class="card-body" style="color: white;">
+        <h4>{{ experience.institution }}</h4>
+        <p><strong>Description:</strong> {{ experience.description }}</p>
+        <p><strong>Date:</strong> {{ experience.date }}</p>
+        <p><strong>Hours:</strong> {{ experience.hours }} hours</p>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <p>No course experiences found.</p>
+  {% endfor %}
+</div>
+
+{% endblock %}
+
